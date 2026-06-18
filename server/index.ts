@@ -2,10 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import projectRoutes from './routes/projectRoutes.js';
 import contentRoutes from './routes/contentRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
-dotenv.config();
+// Load the .env located in the server folder reliably even when the process
+// is started from the repository root.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -15,6 +22,7 @@ app.use(express.json());
 
 app.use('/api/projects', projectRoutes);
 app.use('/api/content', contentRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/api/health', (_, res) => {
   res.json({ status: 'ok', message: 'Deepindiary API running' });
