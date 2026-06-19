@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 type Project = {
-  _id: string;
+  _id?: string;
   title: string;
   summary: string;
   tags: string[];
