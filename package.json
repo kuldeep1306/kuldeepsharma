@@ -9,7 +9,7 @@
     "dev:server": "tsx watch server/index.ts",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node dist/server.js"
+    "start": "tsx server/index.ts"
   },
   "dependencies": {
     "axios": "^1.5.0",
