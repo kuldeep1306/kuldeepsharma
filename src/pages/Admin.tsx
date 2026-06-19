@@ -3,6 +3,9 @@ import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useBlog } from '../context/BlogContext';
 
+axios.defaults.baseURL =
+  import.meta.env.VITE_API_URL || "http://localhost:4000";
+
 type PostForm = {
   title: string;
   category: string;
