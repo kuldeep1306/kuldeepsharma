@@ -29,15 +29,31 @@ export function BlogProvider({ children }: { children: ReactNode }) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const refreshPosts = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.get<Post[]>('/api/content');
-      setPosts(res.data || []);
-    } finally {
-      setLoading(false);
-    }
-  };
+const refreshPosts = async () => {
+  setLoading(true);
+
+  try {
+    const res = await axios.get<Post[]>('/api/content', {
+      timeout: 15000,
+    });
+
+    setPosts(res.data || []);
+  } catch (err) {
+    console.error('Failed to load posts:', err);
+
+    // Retry once after 2 sec
+    setTimeout(async () => {
+      try {
+        const retry = await axios.get<Post[]>('/api/content');
+        setPosts(retry.data || []);
+      } catch (e) {
+        console.error('Retry failed:', e);
+      }
+    }, 2000);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const addPost = (post: Post) => {
     setPosts((prev) => [post, ...prev]);
