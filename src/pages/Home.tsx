@@ -50,29 +50,40 @@ function Home({ showGlow }: HomeProps) {
         </div>
       </section>
 
-      <section className="skills-section reveal delay-1">
-        <h2>Skills & Expertise</h2>
-        <p className="skills-intro">A balanced skill set for product development, storytelling, and technical delivery.</p>
+<section className="skills-section reveal delay-1">
+  <h2>Skills & Expertise</h2>
+  <p className="skills-intro">
+    Full-stack developer with experience building modern web applications,
+    backend systems, and cloud-based solutions.
+  </p>
 
-        <div className="skills-grid">
-          <article>
-            <h3>Frontend</h3>
-            <p>HTML · CSS · React · JavaScript</p>
-          </article>
-          <article>
-            <h3>Backend</h3>
-            <p>Node.js · Express</p>
-          </article>
-          <article>
-            <h3>Database</h3>
-            <p>MySQL · Firebase · MongoDB</p>
-          </article>
-          <article>
-            <h3>Others</h3>
-            <p>Java · Python · AI Integration · REST APIs · Git/GitHub</p>
-          </article>
-        </div>
-      </section>
+  <div className="skills-grid">
+    <article>
+      <h3>Frontend</h3>
+      <p>React.js, JavaScript, TypeScript, HTML5, CSS3, Responsive Design</p>
+    </article>
+
+    <article>
+      <h3>Backend</h3>
+      <p>Node.js, Express.js, REST APIs, Authentication & Authorization</p>
+    </article>
+
+    <article>
+      <h3>Database & Cloud</h3>
+      <p>MongoDB, MySQL</p>
+    </article>
+
+    <article>
+      <h3>Tools</h3>
+      <p>Git, GitHub, Postman, Vercel, Netlify, VS Code</p>
+    </article>
+
+    <article>
+      <h3>Programming Languages</h3>
+      <p>Java, Python, JavaScript</p>
+    </article>
+  </div>
+</section>
     </>
   );
 }
