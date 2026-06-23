@@ -108,7 +108,7 @@ function App() {
         <div className="footer-wrapper">
           <div className="footer-content">
             <div className="footer-section footer-brand">
-              <h3>Kuldeep Sharma</h3>
+              <h3>Kuldeep Sharma </h3>
               <p className="tagline">Investigative storyteller, content creator & full-stack developer</p>
               <p className="mission">Building narratives. Exposing truths. Deepindiary.</p>
             </div>

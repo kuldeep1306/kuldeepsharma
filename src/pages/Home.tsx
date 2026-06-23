@@ -9,7 +9,11 @@ function Home({ showGlow }: HomeProps) {
     <>
       <section className={`hero home-hero${showGlow ? ' effect' : ''}`}>
         <div className="hero-copy reveal delay-1">
-          <span className="eyebrow">Kuldeep Sharma</span>
+          <span className="eyebrow">Kuldeep Sharma</span>              
+           <h3>Founder of deepindiary</h3>
+            <h4>Currently working on thekuldeepsays</h4>
+
+
           <h1>Full-Stack Developer • Creator</h1>
           <p className="headline">Building impactful digital products and uncovering stories that matter.</p>
           <p className="intro">I'm Kuldeep Sharma, a Full-Stack Developer and digital storyteller passionate about technology, innovation, and meaningful narratives.</p>
@@ -24,7 +28,7 @@ function Home({ showGlow }: HomeProps) {
           <div className="profile-card">
             <div className="profile-image">KS</div>
             <div>
-              <h2>Kuldeep Sharma</h2>
+              <h2>Kuldeep Sharma </h2>
               <p>Building digital products and storytelling platforms with clarity, purpose, and impact.</p>
             </div>
           </div>
