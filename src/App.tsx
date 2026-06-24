@@ -58,9 +58,13 @@ function App() {
           <span className="brand-name">Kuldeep</span>
           <span className="brand-last">Sharma</span>
         </Link>
-        <button className={`nav-toggle ${mobileOpen ? 'open' : ''}`} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation">
-          ☰
-        </button>
+         <button
+  className={`nav-toggle ${mobileOpen ? 'open' : ''}`}
+  onClick={() => setMobileOpen(!mobileOpen)}
+  aria-label="Toggle navigation"
+>
+  {mobileOpen ? "✕" : "☰"}
+</button>
         <nav className={`site-nav ${mobileOpen ? 'open' : ''}`}>
           {(() => {
             const blogIndex = navLinks.findIndex(l => l.path === '/blog');
