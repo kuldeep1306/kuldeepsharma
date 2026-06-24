@@ -353,23 +353,31 @@ body::before {
 }
 
 @media (max-width: 720px) {
-  .nav-toggle { display: block; }
-  .site-nav { 
+  .site-nav {
+    display: none !important;
+  }
+
+  .site-nav.open {
+    display: flex !important;
+    flex-direction: column;
     position: absolute;
-    top: 64px;
-    right: 1rem;
-    background: rgba(10,14,22,0.95);
+    top: 70px;
+    right: 10px;
+    background: #111;
     padding: 1rem;
     border-radius: 10px;
+    z-index: 9999;
+    opacity: 1 !important;
+    max-height: 500px !important;
+  }
+
+  .nav-left,
+  .nav-center,
+  .nav-right {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
+    width: 100%;
   }
-  .site-nav.open { max-height: 320px; opacity: 1; }
-  .site-nav a { padding: 0.5rem 0.6rem; }
 }
 
 .app-shell.light-mode .site-nav a {
