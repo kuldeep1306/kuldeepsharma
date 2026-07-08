@@ -75,7 +75,7 @@ function Home({ showGlow }: HomeProps) {
 
     <article>
       <h3>Tools</h3>
-      <p>Git, GitHub, Postman, Vercel, Netlify, VS Code</p>
+      <p>Git, GitHub, Postman, Vercel, Netlify, render, VS Code</p>
     </article>
 
     <article>
