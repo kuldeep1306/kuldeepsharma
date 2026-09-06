@@ -1377,6 +1377,13 @@ main { width: min(100% - 48px, 1240px); padding: 0; }
   .footer-content, .footer-bottom { align-items: flex-start; flex-direction: column; }
 }
 
+@media (max-width: 380px) {
+  .site-header { gap: 0.35rem; }
+  .brand { font-size: 0.98rem; }
+  .nav-toggle { padding: 0.35rem 0.45rem; }
+  .header-cta { padding: 0.5rem 0.55rem; font-size: 0.7rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
