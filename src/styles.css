@@ -1626,7 +1626,7 @@ html, body {
 .app-shell.light-mode .footer-divider { background: var(--border); }
 
 @media (max-width: 720px) {
-  .theme-toggle { position: absolute; top: 0.75rem; right: 3.7rem; }
+  .theme-toggle { position: static; top: auto; right: auto; }
   .app-shell.light-mode .site-nav.open { background: #ffffff; border-color: var(--border); }
 }
 
