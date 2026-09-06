@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
 type Project = {
-  _id?: string;
   title: string;
   summary: string;
   tags: string[];
@@ -49,37 +45,20 @@ const staticProjects = [
 ];
 
 function Projects() {
-  const [projects, setProjects] = useState<Project[]>(staticProjects);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    axios.get<Project[]>('/api/projects')
-      .then((response) => {
-        if (response.data.length > 0) {
-          setProjects([...staticProjects, ...response.data]);
-        }
-      })
-      .catch(() => {
-        // Use static projects if API fails
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
   return (
     <section className="page-content reveal delay-1">
       <h1>Projects</h1>
       <p>A collection of work that spans storytelling, development, and digital innovation. From investigative platforms to interactive tools, each project represents ideas turned into reality.</p>
       <div className="project-list reveal delay-2">
-        {projects.map((project, idx) => (
-          <article key={idx}>
+        {staticProjects.map((project) => (
+          <article key={project.title}>
             <h2>{project.title}</h2>
             <p>{project.summary}</p>
             <div className="tag-row">
               {project.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
             </div>
             {project.link && (
-              <a href={project.link} target="_blank" rel="noreferrer" style={{fontWeight: '600', marginTop: '0.75rem', display: 'inline-block'}}>View Project →</a>
+              <a className="project-link" href={project.link} target="_blank" rel="noreferrer">View Project →</a>
             )}
           </article>
         ))}

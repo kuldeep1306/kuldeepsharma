@@ -2,30 +2,32 @@ import { useEffect, useState } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Blog from './pages/Blog';
-import Admin from './pages/Admin';
+import Experience from './pages/Experience';
 import Deepindiary from './pages/Deepindiary';
 import Projects from './pages/Projects';
 
 const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About' },
-  { path: '/blog', label: 'Blog' },
-  { path: '/admin', label: 'Admin' },
+  { path: '/experience', label: 'Experience' },
   { path: '/projects', label: 'Projects' },
   { path: '/deepindiary', label: 'Deepindiary' }
 ];
 
 const socialLinks = [
-  { name: 'Instagram', url: 'https://www.instagram.com/deepindiary/', icon: '📸' },
-  { name: 'GitHub', url: 'https://github.com/kuldeep1306', icon: '💻' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/kuldeepkh1305/', icon: '💼' }
+  { name: 'GitHub', url: 'https://github.com/kuldeep1306', icon: 'GitHub' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/kuldeepkh1305/', icon: 'LinkedIn' },
+  { name: 'Instagram', url: 'https://www.instagram.com/thekuldeepsays/', icon: 'Instagram' }
 ];
 
 function App() {
-  const [showGlow, setShowGlow] = useState(false);
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(() => localStorage.getItem('theme') === 'light');
+
+  useEffect(() => {
+    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+  }, [isLightMode]);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -52,12 +54,15 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className={`app-shell${showGlow ? ' light-mode' : ''}`}>
+    <div className={`app-shell${isLightMode ? ' light-mode' : ''}`}>
       <header className="site-header">
-        <Link to="/" className="brand" onClick={() => setMobileOpen(false)}>
-          <span className="brand-name">Kuldeep</span>
-          <span className="brand-last">Sharma</span>
-        </Link>
+        <div className="header-identity">
+          <Link to="/" className="brand" onClick={() => setMobileOpen(false)}>
+            <span className="brand-name">Kuldeep</span>
+            <span className="brand-last">Sharma</span>
+          </Link>
+          <span className="header-role">Full Stack Developer</span>
+        </div>
          <button
   className={`nav-toggle ${mobileOpen ? 'open' : ''}`}
   onClick={() => setMobileOpen(!mobileOpen)}
@@ -66,43 +71,29 @@ function App() {
   {mobileOpen ? "✕" : "☰"}
 </button>
         <nav className={`site-nav ${mobileOpen ? 'open' : ''}`}>
-          {(() => {
-            const blogIndex = navLinks.findIndex(l => l.path === '/blog');
-            const left = navLinks.slice(0, blogIndex);
-            const center = navLinks[blogIndex];
-            const right = navLinks.slice(blogIndex + 1);
-
-            return (
-              <>
-                <div className="nav-left">
-                  {left.map(link => (
-                    <Link key={link.path} to={link.path} className={location.pathname === link.path ? 'active' : ''} onClick={() => setMobileOpen(false)}>{link.label}</Link>
-                  ))}
-                </div>
-
-                <div className="nav-center">
-                  {center && (
-                    <Link key={center.path} to={center.path} className={`${location.pathname === center.path ? 'active' : ''} center`} onClick={() => setMobileOpen(false)}>{center.label}</Link>
-                  )}
-                </div>
-
-                <div className="nav-right">
-                  {right.map(link => (
-                    <Link key={link.path} to={link.path} className={location.pathname === link.path ? 'active' : ''} onClick={() => setMobileOpen(false)}>{link.label}</Link>
-                  ))}
-                </div>
-              </>
-            );
-          })()}
+          {navLinks.map(link => (
+            <Link key={link.path} to={link.path} className={location.pathname === link.path ? 'active' : ''} onClick={() => setMobileOpen(false)}>{link.label}</Link>
+          ))}
         </nav>
+        <button
+          className="theme-toggle"
+          type="button"
+          onClick={() => setIsLightMode((current) => !current)}
+          aria-label={`Switch to ${isLightMode ? 'dark' : 'light'} mode`}
+          aria-pressed={isLightMode}
+          title={`Switch to ${isLightMode ? 'dark' : 'light'} mode`}
+        >
+          <span aria-hidden="true">{isLightMode ? '☾' : '☀'}</span>
+          <span>{isLightMode ? 'Dark' : 'Light'}</span>
+        </button>
+        <a className="header-cta" href="/Kuldeep-Sharma-Resume.pdf" download>Resume <span aria-hidden="true">↗</span></a>
       </header>
 
       <main>
         <Routes>
-          <Route path="/" element={<Home showGlow={showGlow} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/experience" element={<Experience />} />
           <Route path="/deepindiary" element={<Deepindiary />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>
@@ -112,9 +103,8 @@ function App() {
         <div className="footer-wrapper">
           <div className="footer-content">
             <div className="footer-section footer-brand">
-              <h3>Kuldeep Sharma </h3>
-              <p className="tagline">Investigative storyteller, content creator & full-stack developer</p>
-              <p className="mission">Building narratives. Exposing truths. Deepindiary.</p>
+              <h3>Kuldeep Sharma</h3>
+              <p className="tagline">Full Stack Developer · MERN Stack</p>
             </div>
             
             <div className="footer-section">
@@ -122,36 +112,18 @@ function App() {
               <div className="social-links">
                 {socialLinks.map(link => (
                   <a key={link.name} href={link.url} target="_blank" rel="noreferrer" title={link.name} className="social-icon">
-                    <span>{link.icon}</span>
+                    <span>{link.icon}</span><span aria-hidden="true">↗</span>
                   </a>
                 ))}
               </div>
             </div>
             
-            <div className="footer-section">
-              <h4>Explore</h4>
-              <ul className="footer-links">
-                {navLinks.slice(0, 3).map(link => (
-                  <li key={link.path}><Link to={link.path}>{link.label}</Link></li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer-section">
-              <h4>More</h4>
-              <ul className="footer-links">
-                {navLinks.slice(3).map(link => (
-                  <li key={link.path}><Link to={link.path}>{link.label}</Link></li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <div className="footer-divider"></div>
 
           <div className="footer-bottom">
             <p className="copyright">© 2026 Kuldeep Sharma. All rights reserved.</p>
-            <p className="credit">Made with <span className="heart">❤️</span> using React, TypeScript & Vite</p>
           </div>
         </div>
       </footer>
