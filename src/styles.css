@@ -1358,9 +1358,13 @@ main { width: min(100% - 48px, 1240px); padding: 0; }
 
 @media (max-width: 640px) {
   main { width: min(100% - 32px, 1240px); }
-  .site-header { margin: 10px 16px 0; padding: 0.75rem 0.85rem; }
-  .header-identity { flex: 1; }
-  .header-cta { margin-left: auto; margin-right: 0.25rem; }
+  .site-header { margin: 10px 16px 0; padding: 0.75rem 0.85rem; gap: 0.55rem; }
+  .header-identity { flex: 1 1 auto; min-width: 0; }
+  .brand { min-width: 0; white-space: nowrap; }
+  .nav-toggle, .theme-toggle, .header-cta { flex-shrink: 0; }
+  .theme-toggle { width: 2.1rem; padding: 0.45rem; justify-content: center; }
+  .theme-toggle span:last-child { display: none; }
+  .header-cta { margin-left: 0; margin-right: 0.25rem; }
   .site-nav.open { top: 58px; right: 0; background: #11151a; border: 1px solid var(--border); }
   .portfolio-hero { padding: 5rem 0 4rem; }
   .portfolio-hero h1 { font-size: clamp(3rem, 15vw, 5rem); }
